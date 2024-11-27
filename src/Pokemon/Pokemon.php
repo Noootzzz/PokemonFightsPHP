@@ -10,6 +10,11 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     protected int $puissanceAttaque;
     protected int $defense;
 
+    protected const ATTAQUEFEU = "Lance-Flammes";
+    protected const ATTAQUEEAU = "Hydrocanon";
+    protected const ATTAQUEPLANTE = "Fouet-Lianes";
+    protected const ATTAQUEELEC = "Onde-Eclair";
+
     public function __construct(string $nom, string $type, int $pv, int $puissanceAttaque, int $defense){        //Constructeur de la classe Pokemon
         $this->nom = $nom;              
         $this->type = $type;
