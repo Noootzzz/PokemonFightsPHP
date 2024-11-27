@@ -22,7 +22,7 @@ class Combat{
 
     private function tourDeCombat(Pokemon $attaquant, Pokemon $defenseur): void {
         $attaquant->attaquer($defenseur);
-        echo "<p>" . $attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus() . "</p>";
+        echo "<p>" . $attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus() . " avec " . $attaquant->getCapaciteSpecialeNom() . "</p>";
     }
 
     private function determinerVainqueur(): void {

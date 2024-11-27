@@ -10,11 +10,6 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     protected int $puissanceAttaque;
     protected int $defense;
 
-    protected const ATTAQUEFEU = "Lance-Flammes";
-    protected const ATTAQUEEAU = "Hydrocanon";
-    protected const ATTAQUEPLANTE = "Fouet-Lianes";
-    protected const ATTAQUEELEC = "Onde-Eclair";
-
     public function __construct(string $nom, string $type, int $pv, int $puissanceAttaque, int $defense){        //Constructeur de la classe Pokemon
         $this->nom = $nom;              
         $this->type = $type;
@@ -41,6 +36,7 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     }   
 
     abstract public function capaciteSpeciale(Pokemon $adversaire): void;       //Fonction abstraite capaciteSpeciale
+    abstract public function getCapaciteSpecialeNom(): string;       //Fonction abstraite capaciteSpecialeNom
 
     public function afficherStatus() : string{                  //Fonction qui permet d'afficher le status du pokemon
         return "{$this->nom} ({$this->type}): {$this->pv} PV";         
