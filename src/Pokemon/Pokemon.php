@@ -7,20 +7,20 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     protected string $type;
 
     protected int $pv;
-    protected int $attaque;
+    protected int $puissanceAttaque;
     protected int $defense;
 
-    public function __construct(string $nom, string $type, int $pv, int $attaque, int $defense){        //Constructeur de la classe Pokemon
+    public function __construct(string $nom, string $type, int $pv, int $puissanceAttaque, int $defense){        //Constructeur de la classe Pokemon
         $this->nom = $nom;              
         $this->type = $type;
         $this->pv = $pv;
-        $this->attaque = $attaque;
+        $this->puissanceAttaque = $puissanceAttaque;
         $this->defense = $defense;
     }
 
 
     public function attaquer(Pokemon $adversaire): void {           //Fonction qui permet d'attaquer un adversaire
-        $degats = max(0, $this->attaque - $adversaire->defense);
+        $degats = max(0, $this->puissanceAttaque - $adversaire->defense);
         $adversaire->recevoirDegats($degats);
     }
 
@@ -32,7 +32,7 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     }
 
     public function estKO(): bool {         //Fonction qui permet de savoir si le pokemon est KO
-        return $this->pv === 0;
+        return $this->pv <= 0;
     }   
 
     abstract public function capaciteSpeciale(Pokemon $adversaire): void;       //Fonction abstraite capaciteSpeciale
