@@ -9,7 +9,7 @@ class PokemonEau extends Pokemon
     protected string $attaqueNom = "Hydrocanon";
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
-        $bonus = $adversaire->type === 'Feu' ? 20 : 10;         //si l'ennemi est de type feu alors il prend + de degat sinon il prend 10 de degat
+        $bonus = $adversaire->type === 'Feu' ? 10 : 0;         //si l'ennemi est de type feu alors il prend + de degat sinon il prend 10 de degats en plus
         $adversaire->recevoirDegats($this->puissanceAttaque + $bonus);
     }
 

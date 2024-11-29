@@ -5,7 +5,6 @@ abstract class Pokemon{     //Classe abstraite Pokemon
 
     protected string $nom;
     protected string $type;
-
     protected int $pv;
     protected int $puissanceAttaque;
     protected int $defense;
@@ -17,7 +16,6 @@ abstract class Pokemon{     //Classe abstraite Pokemon
         $this->puissanceAttaque = $puissanceAttaque;
         $this->defense = $defense;
     }
-
 
     public function attaquer(Pokemon $adversaire): void {           //Fonction qui permet d'attaquer un adversaire
         $degats = max(0, $this->puissanceAttaque - $adversaire->defense);
@@ -36,6 +34,7 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     }   
 
     abstract public function capaciteSpeciale(Pokemon $adversaire): void;       //Fonction abstraite capaciteSpeciale
+
     abstract public function getCapaciteSpecialeNom(): string;       //Fonction abstraite capaciteSpecialeNom
 
     public function afficherStatus() : string{                  //Fonction qui permet d'afficher le status du pokemon
