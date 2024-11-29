@@ -6,6 +6,7 @@ require_once 'src/Pokemon/PokemonEau.php';
 require_once 'src/Pokemon/PokemonPlante.php';
 require_once 'src/Pokemon/PokemonElectrique.php';
 require_once 'src/Classes/Combat.php';
+require_once 'src/Classes/Attaque.php';
 require_once 'pokemons.php';
 
 ?>

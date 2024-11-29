@@ -17,15 +17,25 @@ abstract class Pokemon{     //Classe abstraite Pokemon
         $this->defense = $defense;
     }
 
-    public function attaquer(Pokemon $adversaire): void {           //Fonction qui permet d'attaquer un adversaire
+    public function attaquer(Pokemon $adversaire): void
+    {
+        echo "{$this->nom} attaque {$adversaire->nom} avec une attaque de base :\n";
+
+        //Attaque basique -> puissance d’attaque de base - défense de l’adversaire
         $degats = max(0, $this->puissanceAttaque - $adversaire->defense);
         $adversaire->recevoirDegats($degats);
     }
 
-    public function recevoirDegats(int $degats): void {         //Fonction qui permet de recevoir des degats
+    public function recevoirDegats(int $degats): void
+    {
         $this->pv -= $degats;
-        if ($this->pv < 0) {
+        if($this->estKO()) 
+        {
             $this->pv = 0;
+        }
+        
+        if ($this->pv <= 0) {
+            echo "{$this->nom} est KO !\n";
         }
     }
 
@@ -33,12 +43,11 @@ abstract class Pokemon{     //Classe abstraite Pokemon
         return $this->pv <= 0;
     }   
 
-    abstract public function capaciteSpeciale(Pokemon $adversaire): void;       //Fonction abstraite capaciteSpeciale
-
+    abstract public function capaciteSpeciale(Pokemon $adversaire): void;   //Fonction abstraite capaciteSpeciale
     abstract public function getCapaciteSpecialeNom(): string;       //Fonction abstraite capaciteSpecialeNom
 
     public function afficherStatus() : string{                  //Fonction qui permet d'afficher le status du pokemon
-        return "{$this->nom} ({$this->type}): {$this->pv} PV";         
+        return "{$this->nom} ({$this->type}) ==> {$this->pv} PV";         
     }
 
     public function getNom(): string{           

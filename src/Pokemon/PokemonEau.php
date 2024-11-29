@@ -6,16 +6,26 @@
 
 class PokemonEau extends Pokemon
 {
-    protected string $attaqueNom = "Hydrocanon";
+    protected Attaque $attaqueSpeciale;
+    protected string $attaqueSpecialeNom;
+
+    public function __construct(string $nom, int $pv, int $puissanceAttaque, int $defense)
+    {
+        parent::__construct($nom, "Eau", $pv, $puissanceAttaque, $defense);
+        $this->attaqueSpecialeNom = "Hydrocanon";
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 10, 92);
+    }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
-        $bonus = $adversaire->type === 'Feu' ? 10 : 0;         //si l'ennemi est de type feu alors il prend + de degat sinon il prend 10 de degats en plus
-        $adversaire->recevoirDegats($this->puissanceAttaque + $bonus);
+        echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
+
+        // Chance d'exécuter l'attaque spéciale avec précision
+        $this->attaqueSpeciale->executerAttaque($adversaire);
     }
 
     public function getCapaciteSpecialeNom(): string
     {
-        return $this->attaqueNom;   
+        return $this->attaqueSpecialeNom;
     }
 }
 

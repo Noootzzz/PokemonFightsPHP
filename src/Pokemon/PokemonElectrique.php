@@ -5,16 +5,26 @@
 
 class PokemonElectrique extends Pokemon
 {                  //On hérite de la classe Pokemon
-    protected string $attaqueNom = "Onde-Electrique";
+    protected Attaque $attaqueSpeciale;
+    protected string $attaqueSpecialeNom;
+
+    public function __construct(string $nom, int $pv, int $puissanceAttaque, int $defense)
+    {
+        parent::__construct($nom, "Electrique", $pv, $puissanceAttaque, $defense);
+        $this->attaqueSpecialeNom = "Onde-Electrique";
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 85);
+    }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
-        $bonus = $adversaire->type === 'Eau' ? 10 : 0;          //si l'ennemi est de type eau alors il prend + de degat sinon il prend 0 de degats en plus
-        $adversaire->recevoirDegats($this->puissanceAttaque + $bonus);
+        echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
+
+        // Chance d'exécuter l'attaque spéciale avec précision
+        $this->attaqueSpeciale->executerAttaque($adversaire);
     }
 
     public function getCapaciteSpecialeNom(): string
     {
-        return $this->attaqueNom;   
+        return $this->attaqueSpecialeNom;
     }
 }
 

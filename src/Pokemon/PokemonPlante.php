@@ -6,19 +6,27 @@
 
 class PokemonPlante extends Pokemon
 {
-    protected string $attaqueNom = "Fouet-Lianes";
+    protected Attaque $attaqueSpeciale;
+    protected string $attaqueSpecialeNom;
+
+    public function __construct(string $nom, int $pv, int $puissanceAttaque, int $defense)
+    {
+        parent::__construct($nom, "Plante", $pv, $puissanceAttaque, $defense);
+        $this->attaqueSpecialeNom = "Fouet-Lianes";
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 85);
+    }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
-        $bonus = $adversaire->type === 'Eau' ? 10 : 0;          //si l'ennemi est de type eau alors il prend + de degat sinon il prend 0 de degat en plus
-        $adversaire->recevoirDegats($this->puissanceAttaque + $bonus);
+        echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
+
+        // Chance d'exécuter l'attaque spéciale avec précision
+        $this->attaqueSpeciale->executerAttaque($adversaire);
     }
 
     public function getCapaciteSpecialeNom(): string
     {
-        return $this->attaqueNom;   
+        return $this->attaqueSpecialeNom;
     }
 }
-
-
 
 //Faire les get et tout

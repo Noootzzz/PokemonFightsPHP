@@ -4,17 +4,38 @@
 class Attaque {     //On crée une classe Attaque pour l'apeller dans le fichier Pokemon.php
     private string $nom;
     private int $puissance;
-    private string $precision;   //On ajoute la précision de l'attaque
+    private int $precision;   //On ajoute la précision de l'attaque
 
 
-    public function __construct(string $nom, int $puissance, string $precision){        
+    public function __construct(string $nom, int $puissance, int $precision){        
         $this->nom = $nom;
         $this->puissance = $puissance;
         $this->precision = $precision;
     }
 
-    public function executerAttaque (Pokemon $adversaire): void {       //Fonction qui permet d'attaquer un adversaire
-        $degats = max(0, $this->puissance - $adversaire->defense);          //pas sur de ça (a tester)
-        $adversaire->recevoirDegats($degats);           
+    public function executerAttaque(Pokemon $adversaire): void {
+        $chance = rand(1, 100);  //Générer un nombre aléatoire entre
+        if ($chance <= $this->precision) {
+            echo "L'attaque {$this->nom} a touché l'adversaire et inflige {$this->puissance} dégâts !\n";
+            $adversaire->recevoirDegats($this->puissance);
+        } else {
+            echo "L'attaque {$this->nom} a échoué !\n";
+        }
+    }
+    
+
+    public function getPuissance(): int
+    {
+        return $this->puissance;
+    }
+
+    public function getPrecision(): int
+    {
+        return $this->precision;
+    }
+
+    public function getNom(): string
+    {
+        return $this->nom;
     }
 }
