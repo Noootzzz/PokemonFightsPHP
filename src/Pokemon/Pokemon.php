@@ -9,6 +9,8 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     protected int $puissanceAttaque;
     protected int $defense;
 
+    protected int $bonus = 0;
+
     public function __construct(string $nom, string $type, int $pv, int $puissanceAttaque, int $defense){        //Constructeur de la classe Pokemon
         $this->nom = $nom;              
         $this->type = $type;
@@ -28,7 +30,7 @@ abstract class Pokemon{     //Classe abstraite Pokemon
 
     public function recevoirDegats(int $degats): void
     {
-        $this->pv -= $degats;
+        $this->pv -= ($degats + $this->getBonus());
         if($this->estKO()) 
         {
             $this->pv = 0;
@@ -49,6 +51,7 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     public function afficherStatus() : string{                  //Fonction qui permet d'afficher le status du pokemon
         return "{$this->nom} ({$this->type}) ==> {$this->pv} PV";         
     }
+    abstract public function getBonus(): int;
 
     public function getNom(): string{           
         return $this->nom;
@@ -56,4 +59,5 @@ abstract class Pokemon{     //Classe abstraite Pokemon
     public function getType(): string{
         return $this->type;
     }
+
 }

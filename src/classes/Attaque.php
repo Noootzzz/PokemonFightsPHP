@@ -5,7 +5,7 @@ class Attaque {     //On crée une classe Attaque pour l'apeller dans le fichier
     private string $nom;
     private int $puissance;
     private int $precision;   //On ajoute la précision de l'attaque
-
+    
 
     public function __construct(string $nom, int $puissance, int $precision){        
         $this->nom = $nom;
@@ -15,8 +15,9 @@ class Attaque {     //On crée une classe Attaque pour l'apeller dans le fichier
 
     public function executerAttaque(Pokemon $adversaire): void {
         $chance = rand(1, 100);  //Générer un nombre aléatoire entre
+        $totalPuissance = $this->puissance + $adversaire->getBonus();
         if ($chance <= $this->precision) {
-            echo "L'attaque {$this->nom} a touché l'adversaire et inflige {$this->puissance} dégâts ! <br>";
+            echo "L'attaque spéciale {$this->nom} a touché l'adversaire et inflige {$totalPuissance} dégâts ! <br>";
             $adversaire->recevoirDegats($this->puissance);
         } else {
             echo "L'attaque {$this->nom} a échoué ! <br>";

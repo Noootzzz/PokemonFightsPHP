@@ -17,6 +17,7 @@ class PokemonPlante extends Pokemon
     }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
+        $this->bonus = $adversaire->getType() === "Electrique" ? 10 : 0;
         echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
 
         // Chance d'exécuter l'attaque spéciale avec précision
@@ -26,6 +27,11 @@ class PokemonPlante extends Pokemon
     public function getCapaciteSpecialeNom(): string
     {
         return $this->attaqueSpecialeNom;
+    }
+
+    public function getBonus(): int 
+    {
+        return $this->bonus;
     }
 }
 
