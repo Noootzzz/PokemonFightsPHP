@@ -16,14 +16,13 @@ class Attaque {     //On crée une classe Attaque pour l'apeller dans le fichier
     public function executerAttaque(Pokemon $adversaire): void {
         $chance = rand(1, 100);  //Générer un nombre aléatoire entre
         if ($chance <= $this->precision) {
-            echo "L'attaque {$this->nom} a touché l'adversaire et inflige {$this->puissance} dégâts !\n";
+            echo "L'attaque {$this->nom} a touché l'adversaire et inflige {$this->puissance} dégâts ! <br>";
             $adversaire->recevoirDegats($this->puissance);
         } else {
-            echo "L'attaque {$this->nom} a échoué !\n";
+            echo "L'attaque {$this->nom} a échoué ! <br>";
         }
     }
     
-
     public function getPuissance(): int
     {
         return $this->puissance;

@@ -41,6 +41,7 @@ class Combat
 
         // Affichage des statuts des Pokémon après l'attaque
         echo "<p>" . $attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus() . "</p>";
+
     }
 
     private function determinerVainqueur(): void

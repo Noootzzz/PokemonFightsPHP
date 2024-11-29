@@ -12,7 +12,7 @@ class PokemonElectrique extends Pokemon
     {
         parent::__construct($nom, "Electrique", $pv, $puissanceAttaque, $defense);
         $this->attaqueSpecialeNom = "Onde-Electrique";
-        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 85);
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 84);
     }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {

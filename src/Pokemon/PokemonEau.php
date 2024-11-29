@@ -13,7 +13,7 @@ class PokemonEau extends Pokemon
     {
         parent::__construct($nom, "Eau", $pv, $puissanceAttaque, $defense);
         $this->attaqueSpecialeNom = "Hydrocanon";
-        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 10, 92);
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 10, 85);
     }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {

@@ -24,7 +24,7 @@ require_once 'pokemons.php';
         <h2>Prépare toi au combat</h2>
         <form action="combat.php" method="POST">
             <div>
-                <label for="pokemon1">Choisis ton pokémon :</label>
+                <label for="pokemon1">Choisis le premier pokémon :</label>
                 <select name="pokemon1" id="pokemon1" class="border rounded p-2 w-full">
                     <?php foreach ($pokemons as $index => $pokemon): ?>
                         <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>
@@ -33,7 +33,7 @@ require_once 'pokemons.php';
             </div>
 
             <div>
-                <label for="pokemon2">Choisis ton adversaire :</label>
+                <label for="pokemon2">Choisis le deuxième pokémon :</label>
                 <select name="pokemon2" id="pokemon2" class="border rounded p-2 w-full">
                     <?php foreach ($pokemons as $index => $pokemon): ?>
                         <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>

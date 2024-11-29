@@ -11,7 +11,7 @@ class PokemonFeu extends Pokemon
     {
         parent::__construct($nom, "Feu", $pv, $puissanceAttaque, $defense);
         $this->attaqueSpecialeNom = "Lance-Flammes";
-        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 12, 90);
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 12, 87);
     }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {

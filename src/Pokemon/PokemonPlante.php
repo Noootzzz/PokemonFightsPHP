@@ -13,7 +13,7 @@ class PokemonPlante extends Pokemon
     {
         parent::__construct($nom, "Plante", $pv, $puissanceAttaque, $defense);
         $this->attaqueSpecialeNom = "Fouet-Lianes";
-        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 85);
+        $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 12, 88);
     }
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
