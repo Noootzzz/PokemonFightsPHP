@@ -1,0 +1,17 @@
+@import url('index.css');
+@import url('combat.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pokemon+Solid&display=swap');
+
+/* Classic CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Glacial Indifference Bold', sans-serif;
+}
