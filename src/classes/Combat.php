@@ -4,6 +4,7 @@ class Combat
 {
     private Pokemon $pokemon1;
     private Pokemon $pokemon2;
+    private array $log = []; // Pour stocker les messages du combat
 
     public function __construct(Pokemon $pokemon1, Pokemon $pokemon2)
     {
@@ -11,7 +12,7 @@ class Combat
         $this->pokemon2 = $pokemon2;
     }
 
-    public function demarrerCombat(): void
+    public function demarrerCombat(): array
     {
         while (!$this->pokemon1->estKO() && !$this->pokemon2->estKO()) {
             $this->tourDeCombat($this->pokemon1, $this->pokemon2);
@@ -22,6 +23,10 @@ class Combat
         }
 
         $this->determinerVainqueur();
+        // Sauvegarde des messages du combat dans un fichier JSON
+        file_put_contents('combat.json', json_encode($this->log, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+        return $this->log;
     }
 
     private function tourDeCombat(Pokemon $attaquant, Pokemon $defenseur): void
@@ -31,27 +36,32 @@ class Combat
 
         if ($action === 0) {
             // Attaque de base
-            echo "<p>{$attaquant->getNom()} attaque avec une attaque de base !</p>";
-            $attaquant->attaquer($defenseur);
+            $this->ajouterLog("{$attaquant->getNom()} attaque avec une attaque de base !");
+            $attaquant->attaquer($defenseur, $this->log);
         } else {
             // Utilisation de la capacité spéciale
-            echo "<p>{$attaquant->getNom()} utilise sa capacité spéciale !</p>";
-            $attaquant->capaciteSpeciale($defenseur);
+            $this->ajouterLog("{$attaquant->getNom()} utilise sa capacité spéciale : {$attaquant->getCapaciteSpecialeNom()} !");
+            $attaquant->capaciteSpeciale($defenseur, $this->log);
         }
 
         // Affichage des statuts des Pokémon après l'attaque
-        echo "<p>" . $attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus() . "</p>";
+        $this->ajouterLog($attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus());
 
     }
 
     private function determinerVainqueur(): void
     {
         if ($this->pokemon1->estKO() && $this->pokemon2->estKO()) {
-            echo "<p>Les deux pokémons sont MORT hahahaha la honte</p>";
+            $this->ajouterLog("Les deux pokémons sont MORT hahahaha la honte");
         } elseif ($this->pokemon1->estKO()) {
-            echo "<p>{$this->pokemon2->getNom()} a gagné le combat !</p>";
+            $this->ajouterLog("{$this->pokemon2->getNom()} a gagné le combat !");
         } else {
-            echo "<p>{$this->pokemon1->getNom()} a gagné le combat !</p>";
+            $this->ajouterLog("{$this->pokemon1->getNom()} a gagné le combat !");
         }
+    }
+
+    private function ajouterLog(string $message): void
+    {
+        $this->log[] = $message; // Ajouter le message au tableau des logs
     }
 }

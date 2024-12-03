@@ -19,6 +19,7 @@ if(isset($_POST['pokemon1']) && isset($_POST['pokemon2']))
     $pokemon2 = $pokemons[$pokemon2Index];
 
     $combat = new Combat($pokemon1, $pokemon2);
+    $log = $combat->demarrerCombat();
 }
 else
 {
@@ -39,7 +40,6 @@ else
 <body>
     <main>
         <h2>Combat !</h2>
-        <p><?= $combat->demarrerCombat(); ?></p>
         <a href="index.php">Retour à la selection des pokémons</a>
     </main>
 </body>

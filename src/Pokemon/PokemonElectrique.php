@@ -14,13 +14,14 @@ class PokemonElectrique extends Pokemon
         $this->attaqueSpecialeNom = "Onde-Electrique";
         $this->attaqueSpeciale = new Attaque($this->attaqueSpecialeNom, 15, 84);
     }
-    public function capaciteSpeciale(Pokemon $adversaire): void
+    public function capaciteSpeciale(Pokemon $adversaire, array &$log): void
     {
         $this->bonus = $adversaire->getType() === "Plante" ? 10 : 0;
-        echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
+        // echo "{$this->nom} utilise sa capacité spéciale : {$this->attaqueSpecialeNom} !\n";
 
         // Chance d'exécuter l'attaque spéciale avec précision
-        $this->attaqueSpeciale->executerAttaque($adversaire);
+        $log[] = "{$this->getNom()} utilise sa capacité spéciale : {$this->attaqueSpeciale->getNom()} !";
+        $this->attaqueSpeciale->executerAttaque($adversaire, $log);
     }
 
     public function getCapaciteSpecialeNom(): string

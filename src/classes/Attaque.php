@@ -13,14 +13,14 @@ class Attaque {     //On crée une classe Attaque pour l'apeller dans le fichier
         $this->precision = $precision;
     }
 
-    public function executerAttaque(Pokemon $adversaire): void {
+    public function executerAttaque(Pokemon $adversaire, array &$log): void { // Passer le tableau de logs
         $chance = rand(1, 100);  //Générer un nombre aléatoire entre
         $totalPuissance = $this->puissance + $adversaire->getBonus();
         if ($chance <= $this->precision) {
-            echo "L'attaque spéciale {$this->nom} a touché l'adversaire et inflige {$totalPuissance} dégâts ! <br>";
-            $adversaire->recevoirDegats($this->puissance);
+            $log[] = "L'attaque spéciale {$this->nom} a touché l'adversaire et inflige {$totalPuissance} dégâts !";
+            $adversaire->recevoirDegats($this->puissance, $log);
         } else {
-            echo "L'attaque {$this->nom} a échoué ! <br>";
+            $log[] = "L'attaque {$this->nom} a échoué !";
         }
     }
     
