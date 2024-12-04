@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pokemon+Solid&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Glacial Indifference';
+    font-weight: 700;
+}
+
+body{
+    background-image: url(../img/Background.png);
+    background-size: cover;
+}
+
+
+.combat-arena {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    position: relative;
+}
+
+.pokemon-container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 49%;
+}
+
+.pokemon img {
+    width: 80%;
+    object-fit: contain;
+    margin-bottom: 10px;
+    animation: idle 2s infinite;
+
+}
+
+@keyframes idle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+#pokemon1{
+    transform: scaleX(-1);
+}
+
+#pokemon1 p{
+    transform: scaleX(-1);
+}
+
+.pokemon-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.health-bar {
+    width: 50%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    border: 1px solid #999;
+}
+
+.health {
+    height: 100%;
+    background-color: #4caf50; 
+    transition: width 0.5s ease;
+}
+
+.combat-log {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #356ABC;
+    background: linear-gradient(45deg, #FFCB05, #FFC107);
+    border: 2px solid #356ABC;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.combat-log:hover {
+    transform: translateX(-50%) scale(1.02);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(90deg, #FFC107, #FFCB05, #FFD54F);
+}
+
+.combat-log h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.combat-log p {
+    margin: 5px 0;
+    line-height: 1.5;
+    color: #444;
+    font-size: 1rem;
+}
+
+.combat-log {
+    scrollbar-width: thin;
+    scrollbar-color: #FFC107 #356ABC; 
+}
+
+
+.combat-log::-webkit-scrollbar-track {
+    background: #356ABC; 
+    border-radius: 10px;
+}
+
+
+.limit{
+    z-index: -5;
+    position: absolute;
+    top:0;
+    left:50;
+    width: 1%;
+    height: 100%;
+    background-color: white;
+}
+
+
+.animated-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(45deg, #FFCB05, #FFC107);
+    border: 2px solid #356ABC;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #356ABC;
+    cursor: pointer;
+    width: 15rem;
+    height: 5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(90deg, #FFC107, #FFCB05, #FFD54F);
+}
+
+.animated-button:before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+    transform: rotate(45deg);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.animated-button:hover:before {
+    opacity: 0.5;
+    animation: shine 1.5s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-100%, -100%);
+    }
+    100% {
+        transform: translate(100%, 100%);
+    }
+}
+
+.animated-button img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.animated-button:hover img {
+    transform: rotate(360deg);
+}
