@@ -18,31 +18,45 @@ require_once 'pokemons.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="style/css/index.css">
 </head>
 <body>
     <main>
-        <h2>Prépare toi au combat</h2>
+        <header>
+            <img src="style/img/Logo.png" alt="">
+            <img src="style/img/Pokeball.png" alt="">
+        </header>
         <form action="combat.php" method="POST">
-            <div>
-                <label for="pokemon1">Choisis le premier pokémon :</label>
-                <select name="pokemon1" id="pokemon1" class="border rounded p-2 w-full">
-                    <?php foreach ($pokemons as $index => $pokemon): ?>
-                        <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>
-                    <?php endforeach; ?>
-                </select>
+        <div class="selector">
+            <div class="details">
+                <label for="pokemon1"><img src="style/img/select1.png" alt=""></label>
+                <div class="choice">
+                    <select name="pokemon1" id="pokemon1">
+                        <?php foreach ($pokemons as $index => $pokemon): ?>
+                            <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
 
-            <div>
-                <label for="pokemon2">Choisis le deuxième pokémon :</label>
-                <select name="pokemon2" id="pokemon2" class="border rounded p-2 w-full">
-                    <?php foreach ($pokemons as $index => $pokemon): ?>
-                        <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <div class="details">
+                <label for="pokemon2"> <img src="style/img/select2.png" alt=""></label>
+                    <div class="choice">
+                        <select name="pokemon2" id="pokemon2">
+                            <?php foreach ($pokemons as $index => $pokemon): ?>
+                                <option value="<?= $index; ?>"><?= $pokemon->getNom(); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+        </div>
 
-            <button type="submit">Combattre !</button>
+            <button type="submit" class="animated-button">Combattre<img src="style/img/Pokeball.png" alt=""></button>
+
         </form>
     </main>
+
+    <script src="style/js/script.js"></script>
+
 </body>
 </html>
