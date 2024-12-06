@@ -16,19 +16,14 @@ class PokemonElectrique extends Pokemon
     }
     public function capaciteSpeciale(Pokemon $adversaire, array &$log): void
     {
-        $this->bonus = $adversaire->getType() === "Plante" ? 10 : 0;
+        $bonus = $adversaire->getType() === "Plante" ? 10 : 0;
         // Chance d'exécuter l'attaque spéciale avec précision
-        $this->attaqueSpeciale->executerAttaque($adversaire, $log);
+        $this->attaqueSpeciale->executerAttaque($adversaire,$bonus, $log);
     }
 
     public function getCapaciteSpecialeNom(): string
     {
         return $this->attaqueSpecialeNom;
-    }
-
-    public function getBonus(): int 
-    {
-        return $this->bonus;
     }
 }
 

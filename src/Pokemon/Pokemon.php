@@ -23,16 +23,14 @@ abstract class Pokemon
 
     public function attaquer(Pokemon $adversaire, array &$log): void
     {
-        // echo "{$this->nom} attaque {$adversaire->nom} avec une attaque de base :\n";
-
         //Attaque basique -> puissance d’attaque de base - défense de l’adversaire
         $degats = max(0, $this->puissanceAttaque - $adversaire->defense);
-        $adversaire->recevoirDegats($degats, $log);
+        $adversaire->recevoirDegats($degats, 0, $log);
     }
 
-    public function recevoirDegats(int $degats, array &$log): void
+    public function recevoirDegats(int $degats, int $bonus, array &$log): void
     {
-        $this->pv -= ($degats + $this->getBonus());
+        $this->pv -= ($degats + $bonus);
         if ($this->estKO()) {
             $this->pv = 0;
         }
@@ -53,8 +51,6 @@ abstract class Pokemon
     {   //Fonction qui permet d'afficher le status du pokemon
         return "{$this->nom}-{$this->type}-{$this->pv}pv";
     }
-    abstract public function getBonus(): int;
-
     public function getNom(): string
     {
         return $this->nom;

@@ -19,17 +19,13 @@ class PokemonEau extends Pokemon
     public function capaciteSpeciale(Pokemon $adversaire, array &$log): void
     {
         // On ajoute 10 de dégâts bonus si l'adversaire est de type feu
-        $this->bonus = $adversaire->getType() === "Feu" ? 10 : 0;
-        $this->attaqueSpeciale->executerAttaque($adversaire, $log);
+        $bonus = $adversaire->getType() === "Feu" ? 10 : 0;
+        $this->attaqueSpeciale->executerAttaque($adversaire,$bonus, $log);
     }
     
     public function getCapaciteSpecialeNom(): string
     {
         return $this->attaqueSpecialeNom;
-    }
-    public function getBonus(): int 
-    {
-        return $this->bonus;
     }
 }
 
