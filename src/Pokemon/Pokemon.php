@@ -36,7 +36,6 @@ abstract class Pokemon
         if ($this->estKO()) {
             $this->pv = 0;
         }
-
         if ($this->pv <= 0) {
             $log[] = "{$this->nom} est KO !";
         }
@@ -51,8 +50,8 @@ abstract class Pokemon
     abstract public function getCapaciteSpecialeNom(): string;       //Fonction abstraite capaciteSpecialeNom
 
     public function afficherStatus(): string
-    {                  //Fonction qui permet d'afficher le status du pokemon
-        return "{$this->nom} ({$this->type}) {$this->pv} PV ==>";
+    {   //Fonction qui permet d'afficher le status du pokemon
+        return "{$this->nom}-{$this->type}-{$this->pv}pv";
     }
     abstract public function getBonus(): int;
 

@@ -36,17 +36,15 @@ class Combat
 
         if ($action === 0) {
             // Attaque de base
-            $this->ajouterLog("{$attaquant->getNom()} attaque avec une attaque de base !");
+            // Affichage des statuts des Pokémon après l'attaque
+            $this->ajouterLog(" STATUT ATTAQUANT : " .$attaquant->afficherStatus() . " STATUT DEFENSEUR : " . $defenseur->afficherStatus() . " ➜ " . " {$attaquant->getNom()} attaque " . $defenseur->getNom() . " avec une attaque de base !");
             $attaquant->attaquer($defenseur, $this->log);
         } else {
             // Utilisation de la capacité spéciale
-            $this->ajouterLog("{$attaquant->getNom()} utilise sa capacité spéciale : {$attaquant->getCapaciteSpecialeNom()} !");
+            // Affichage des statuts des Pokémon après l'attaque
+            $this->ajouterLog(" STATUT ATTAQUANT : " . $attaquant->afficherStatus() . " STATUT DEFENSEUR : " . $defenseur->afficherStatus() . " ➜ " . " {$attaquant->getNom()} utilise sa capacité spéciale {$attaquant->getCapaciteSpecialeNom()} contre " . $defenseur->getNom());
             $attaquant->capaciteSpeciale($defenseur, $this->log);
         }
-
-        // Affichage des statuts des Pokémon après l'attaque
-        $this->ajouterLog($attaquant->afficherStatus() . " attaque " . $defenseur->afficherStatus());
-
     }
 
     private function determinerVainqueur(): void
