@@ -11,6 +11,11 @@ require_once 'pokemons.php';
 
 if(isset($_POST['pokemon1']) && isset($_POST['pokemon2']))
 {
+
+    // Lire le fichier combat.json
+    $combatLog = file_get_contents('combat.json');
+    $combatLogArray = json_decode($combatLog, true);
+
     $pokemon1Index = $_POST['pokemon1'];
     $pokemon2Index = $_POST['pokemon2'];
 
@@ -18,6 +23,7 @@ if(isset($_POST['pokemon1']) && isset($_POST['pokemon2']))
     $pokemon2 = $pokemons[$pokemon2Index];
 
     $combat = new Combat($pokemon1, $pokemon2);
+    $log = $combat->demarrerCombat();
 }
 else
 {
@@ -54,11 +60,10 @@ else
             </div>
         </div>
 
-        <div class="combat-log" id="combat-log">
+        <div class="combat-log" id="combat-log"> <!-- Conteneur pour afficher les logs -->
             <h2>
                 Combat entre <?= $pokemon1->getNom(); ?> et <?= $pokemon2->getNom(); ?>
             </h2>
-            <?= $combat->demarrerCombat(); ?>
         </div>
         <a href="index.php" class="animated-button">
     Retour
@@ -67,6 +72,28 @@ else
         <div class="limit"></div>
     </main>
 
+    <script>
+        // Tableau JSON de logs
+        const combatLogs = <?php echo json_encode($combatLogArray); ?>;
+        
+        // Afficher les logs avec un délai d'1 seconde entre chaque
+        let currentIndex = 0;
+        const logContainer = document.getElementById('combat-log');
+
+        function afficherLog() {
+            if (currentIndex < combatLogs.length) {
+                const newLog = document.createElement('p');
+                newLog.textContent = combatLogs[currentIndex];
+                logContainer.appendChild(newLog);
+                currentIndex++;
+                setTimeout(afficherLog, 700);
+            }
+        }
+
+        window.onload = function() {
+            afficherLog();
+        };
+    </script>
     <script src="combat.js"></script>
 </body>
 </html>
